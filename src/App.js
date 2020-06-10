@@ -9,7 +9,7 @@ const center = {
   justifyContent: 'center',
 }
 
-function App() {
+export default function App() {
   return (
     <Container style={center}>
       my react app
@@ -17,4 +17,3 @@ function App() {
   );
 }
 
-export default App;
