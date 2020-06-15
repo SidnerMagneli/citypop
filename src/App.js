@@ -1,7 +1,7 @@
 import React from 'react';
 import Container from 'react-bootstrap/Container';
 import Jumbotron from 'react-bootstrap/Jumbotron';
-import SearchBar from './components/SearchBar';
+import Search from './components/Search';
 
 const center = {
   height: '100vh',
@@ -15,8 +15,8 @@ export default function App() {
 
   return (
     <Container style={center}>
-      <Jumbotron>
-        <SearchBar />
+      <Jumbotron style={{borderRadius: '15em'}}>
+        <Search />
       </Jumbotron>
     </Container>
   );

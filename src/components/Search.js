@@ -3,7 +3,7 @@ import Form from 'react-bootstrap/Form';
 import Container from 'react-bootstrap/Container';
 import useFetch from '../useFetch';
 
-export default function SearchBar() {
+export default function Search() {
    const [search, setSearch] = useState("");
    const [data, loading, error] = useFetch("http://api.geonames.org/searchJSON?q=london&maxRows=10&username=demo");
 
@@ -12,12 +12,11 @@ export default function SearchBar() {
 
    const handleChange = (e) => {
       setSearch(e.target.value);
-      console.log(search);
    };
 
-   const handleSubmit = (event) => {
-      event.preventDefault();
-      alert(`Submitting search: ${search}`)
+   const handleSubmit = (e) => {
+      e.preventDefault();
+      alert(`Submitting search: ${search}`);
    };
 
    return (
