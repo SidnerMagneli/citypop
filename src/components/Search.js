@@ -130,10 +130,10 @@ export default function Search(props) {
             </Row>
             <Row xs='1' className='d-flex justify-content-center'>
             { data && !noResult && !loading && !clearedSearch                
-               ?  data.map(geoLoc => // display list of cities
+               ?  data.map(geoLoc =>
                      <City geoLoc={geoLoc} key={geoLoc.geonameId} />
                   )  
-               :  <> // either loading or no results returned
+               :  <> 
                      { noResult 
                         ?  noResultFallback
                         :  <Loading loadingState={loading}/>
