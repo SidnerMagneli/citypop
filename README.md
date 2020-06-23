@@ -7,9 +7,11 @@ To install **Citypop** you will need [Docker](https://www.docker.com/). Clone th
 - If you are using **bash** just run `./start` and then build and run the application.
 - If you don't have access to **bash** an/or can't run the above script. Simply build the image and run the container using the following commands:
 
-```
-docker build -t citypop . // build image
+```Bash
+// build image
+docker build -t citypop .
 
+// run container
 docker run \
     -it \
     --rm \
