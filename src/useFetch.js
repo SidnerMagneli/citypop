@@ -1,30 +1,56 @@
 import {useState, useEffect} from 'react'; 
 
-export default function useFetch(url) {
-   const [data, setData] = useState(null);
-   const [loading, setLoading] = useState(true);
-   const [error, setError] = useState(null);
+export default function useFetch(preProcess) {
+    
+  const [data, setData] = useState(null);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
 
-   useEffect(() => {
+  const [shouldFetch, setShouldFetch] = useState(false)
+  const [query, setQuery] = useState('');
+  
+  // trigger data fetching once
+  function fetchNewData(query) { 
+    setQuery(query)
 
-      const fetchData = async () => {
-        setData(null);
-        setLoading(true); // initiate load 
-        try {
-          const res = await fetch(url);
-          const json = await res.json();
-          setData(json.data);
-          console.log(json);
-        } catch (e) {
-          setError(e);
-        } finally {
-          setLoading(false);
-        }
+    // reset state
+    setData(null);
+    setError(null);
+    
+    setShouldFetch(true);
+  }
+
+  useEffect(() => {
+
+    const fetchData = async () => {
+      
+      setLoading(true); // start loading
+      
+      try {
+
+        const res = await fetch(query);
+        const json = await res.json();
+        console.log('(useFetch) response:',json);
+
+        let preProcessedData = preProcess(json);
+        setData(preProcessedData);
+
+      } catch (e) {
+        setError(e);
+        console.error(`useFetch error: ${e.message}`);
+      } finally {
+        setLoading(false); // stop loading
       }
+    }
+    
+    // only fetch data on submission
+    if(shouldFetch) {
+      fetchData(query);
+      setShouldFetch(false); // prevent further invocation of fetchData
+    }
 
-      fetchData(url);
+  }, [query, preProcess, shouldFetch]);
 
-  },[url])
+  return [data, loading, error, fetchNewData];
 
-  return [data, loading, error]
 }
