@@ -5,7 +5,7 @@ Discover city populations around the world!
 ## Installation
 To install **Citypop** you will need [Docker](https://www.docker.com/). Clone this repository and open the folder in your terminal.
 - If you are using **bash** just run `./start` and then build and run the application.
-- If you don't have access to **bash** an/or can't run the above script. Simply build the image and run the container using the following commands:
+- If you don't have access to **bash** and/or can't run the above script. Simply build the image and run the container using the following commands:
 
 ```bash
 // build image
